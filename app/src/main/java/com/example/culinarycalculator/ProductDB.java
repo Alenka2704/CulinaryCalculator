@@ -105,7 +105,6 @@ public class ProductDB {
                 + " WHERE " +
                 Product._ID + "=?";// It's a good practice to use parameter ?, instead of concatenate string
 
-        int iCount =0;
         Product product = new Product();
 
         Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(Id) } );

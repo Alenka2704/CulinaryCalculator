@@ -24,7 +24,7 @@ public class DBHelper  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //All necessary tables you like to create will create here
 
-        String CREATE_TABLE_STUDENT = "CREATE TABLE " + Product.TABLE  + "("
+        String CREATE_TABLE_PRODUCTS = "CREATE TABLE " + Product.TABLE  + "("
                 + Product._ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
                 + Product._NAME + " TEXT, "
                 + Product._CALORIES + " INTEGER, "
@@ -32,7 +32,7 @@ public class DBHelper  extends SQLiteOpenHelper {
                 + Product._FATS + " INTEGER, "
                 + Product._CARBOHYDRATES + " INTEGER )";
 
-        db.execSQL(CREATE_TABLE_STUDENT);
+        db.execSQL(CREATE_TABLE_PRODUCTS);
 
     }
 
