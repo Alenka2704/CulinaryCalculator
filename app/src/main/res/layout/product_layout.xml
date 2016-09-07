@@ -6,6 +6,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="4dp"
+        android:tag="spnProduct"
         android:layout_weight="2" />
 
     <EditText
@@ -14,6 +15,7 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:padding="4dp"
+        android:tag="txtAmount"
         android:layout_weight="1" />
 
     <ImageButton

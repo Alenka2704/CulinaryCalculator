@@ -8,18 +8,66 @@ public class Product {
     public static final String TABLE = "Product";
 
     // Labels Table Columns names
-    public static final String _ID = "id";
-    public static final String _NAME = "name";
-    public static final String _CALORIES = "calories";
-    public static final String _PROTEINS = "proteins";
-    public static final String _FATS = "fats";
-    public static final String _CARBOHYDRATES = "carbohydrates";
+    public static final String _ID = "ID";
+    public static final String _NAME = "NAME";
+    public static final String _CALORIES = "CALORIES";
+    public static final String _PROTEINS = "PROTEINS";
+    public static final String _FATS = "FATS";
+    public static final String _CARBOHYDRATES = "CARBOHYDRATES";
 
     // property help us to keep data
-    public int product_ID;
-    public String name;
-    public int calories;
-    public int proteins;
-    public int fats;
-    public int carbohydrates;
+    int product_ID;
+    String name;
+    float calories;
+    float proteins;
+    float fats;
+    float carbohydrates;
+
+    public int getProduct_ID() {
+        return product_ID;
+    }
+
+    public void setProduct_ID(int product_ID) {
+        this.product_ID = product_ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getCalories() {
+        return calories;
+    }
+
+    public void setCalories(float calories) {
+        this.calories = calories;
+    }
+
+    public float getProteins() {
+        return proteins;
+    }
+
+    public void setProteins(float proteins) {
+        this.proteins = proteins;
+    }
+
+    public float getFats() {
+        return fats;
+    }
+
+    public void setFats(float fats) {
+        this.fats = fats;
+    }
+
+    public float getCarbohydrates() {
+        return carbohydrates;
+    }
+
+    public void setCarbohydrates(float carbohydrates) {
+        this.carbohydrates = carbohydrates;
+    }
 }

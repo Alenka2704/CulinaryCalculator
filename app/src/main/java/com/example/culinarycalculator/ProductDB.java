@@ -58,16 +58,12 @@ public class ProductDB {
         db.close(); // Closing database connection
     }
 
-    public ArrayList<HashMap<String, String>>  getProductList() {
+    public ArrayList<HashMap<String, String>> getProductList() {
         //Open connection to read only
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Product._ID + "," +
-                Product._NAME + "," +
-                Product._CALORIES + "," +
-                Product._PROTEINS +
-                Product._FATS +
-                Product._CARBOHYDRATES +
+                Product._NAME +
                 " FROM " + Product.TABLE;
 
         //Product product = new Product();
@@ -92,7 +88,7 @@ public class ProductDB {
 
     }
 
-    public Product getProductById(int Id){
+    public ArrayList<Product> getProductsById(String[]ids){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery =  "SELECT  " +
                 Product._ID + "," +
@@ -105,25 +101,25 @@ public class ProductDB {
                 + " WHERE " +
                 Product._ID + "=?";// It's a good practice to use parameter ?, instead of concatenate string
 
-        Product product = new Product();
-
-        Cursor cursor = db.rawQuery(selectQuery, new String[] { String.valueOf(Id) } );
+ArrayList<Product>productsList=new ArrayList<Product>();
+        Cursor cursor = db.rawQuery(selectQuery, ids );
 
         if (cursor.moveToFirst()) {
             do {
+                Product product = new Product();
                 product.product_ID =cursor.getInt(cursor.getColumnIndex(Product._ID));
                 product.name =cursor.getString(cursor.getColumnIndex(Product._NAME));
                 product.calories  =cursor.getInt(cursor.getColumnIndex(Product._CALORIES));
                 product.proteins =cursor.getInt(cursor.getColumnIndex(Product._PROTEINS));
                 product.fats =cursor.getInt(cursor.getColumnIndex(Product._FATS));
                 product.carbohydrates=cursor.getInt(cursor.getColumnIndex(Product._CARBOHYDRATES));
-
+productsList.add(product);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         db.close();
-        return product;
+        return productsList;
     }
 
 }
