@@ -16,7 +16,10 @@
         android:ems="10"
         android:padding="4dp"
         android:tag="txtAmount"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:hint="0"
+        android:selectAllOnFocus="true"
+        android:numeric="decimal" />
 
     <ImageButton
         android:layout_width="48dp"
