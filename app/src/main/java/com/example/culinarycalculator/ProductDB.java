@@ -15,6 +15,14 @@ import java.util.HashMap;
 public class ProductDB {
     private DBHelper dbHelper;
 
+    // Labels Table Columns names
+    public static final String ID = "ID";
+    public static final String NAME = "NAME";
+    public static final String CALORIES = "CALORIES";
+    public static final String PROTEINS = "PROTEINS";
+    public static final String FATS = "FATS";
+    public static final String CARBOHYDRATES = "CARBOHYDRATES";
+
     public ProductDB(Context context) {
         dbHelper = new DBHelper(context);
     }
@@ -24,11 +32,11 @@ public class ProductDB {
         //Open connection to write data
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(Product._NAME, product.name);
-        values.put(Product._CALORIES, product.calories);
-        values.put(Product._PROTEINS, product.proteins);
-        values.put(Product._FATS, product.fats);
-        values.put(Product._CARBOHYDRATES, product.carbohydrates);
+        values.put(ProductDB.NAME, product.name);
+        values.put(ProductDB.CALORIES, product.calories);
+        values.put(ProductDB.PROTEINS, product.proteins);
+        values.put(ProductDB.FATS, product.fats);
+        values.put(ProductDB.CARBOHYDRATES, product.carbohydrates);
 
         // Inserting Row
         long product_ID = db.insert(Product.TABLE, null, values);
@@ -40,7 +48,7 @@ public class ProductDB {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         // It's a good practice to use parameter ?, instead of concatenate string
-        db.delete(Product.TABLE, Product._ID + "= ?", new String[]{String.valueOf(product_ID)});
+        db.delete(Product.TABLE, ProductDB.ID + "= ?", new String[]{String.valueOf(product_ID)});
         db.close(); // Closing database connection
     }
 
@@ -49,14 +57,14 @@ public class ProductDB {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(Product._NAME, product.name);
-        values.put(Product._CALORIES, product.calories);
-        values.put(Product._PROTEINS, product.proteins);
-        values.put(Product._FATS, product.fats);
-        values.put(Product._CARBOHYDRATES, product.carbohydrates);
+        values.put(ProductDB.NAME, product.name);
+        values.put(ProductDB.CALORIES, product.calories);
+        values.put(ProductDB.PROTEINS, product.proteins);
+        values.put(ProductDB.FATS, product.fats);
+        values.put(ProductDB.CARBOHYDRATES, product.carbohydrates);
 
         // It's a good practice to use parameter ?, instead of concatenate string
-        db.update(Product.TABLE, values, Product._ID + "= ?", new String[]{String.valueOf(product.product_ID)});
+        db.update(Product.TABLE, values, ProductDB.ID + "= ?", new String[]{String.valueOf(product.product_ID)});
         db.close(); // Closing database connection
     }
 
@@ -64,8 +72,8 @@ public class ProductDB {
         //Open connection to read only
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT  " +
-                Product._ID + "," +
-                Product._NAME +
+                ProductDB.ID + "," +
+                ProductDB.NAME +
                 " FROM " + Product.TABLE;
 
         //Product product = new Product();
@@ -77,8 +85,8 @@ public class ProductDB {
         if (cursor.moveToFirst()) {
             do {
                 HashMap<String, String> product = new HashMap<String, String>();
-                product.put("id", cursor.getString(cursor.getColumnIndex(Product._ID)));
-                product.put("name", cursor.getString(cursor.getColumnIndex(Product._NAME)));
+                product.put("id", cursor.getString(cursor.getColumnIndex(ProductDB.ID)));
+                product.put("name", cursor.getString(cursor.getColumnIndex(ProductDB.NAME)));
                 productList.add(product);
 
             } while (cursor.moveToNext());
@@ -102,15 +110,15 @@ public class ProductDB {
     public ArrayList<Product> getProductsById(String[] ids) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String selectQuery = "SELECT  " +
-                Product._ID + ", " +
-                Product._NAME + ", " +
-                Product._CALORIES + ", " +
-                Product._PROTEINS +", " +
-                Product._FATS +", " +
-                Product._CARBOHYDRATES +
+                ProductDB.ID + ", " +
+                ProductDB.NAME + ", " +
+                ProductDB.CALORIES + ", " +
+                ProductDB.PROTEINS +", " +
+                ProductDB.FATS +", " +
+                ProductDB.CARBOHYDRATES +
                 " FROM " + Product.TABLE
                 + " WHERE " +
-                Product._ID + " IN "+
+                ProductDB.ID + " IN "+
                 constructWhereClause(ids);
 
         ArrayList<Product> productsList = new ArrayList<Product>();
@@ -119,12 +127,12 @@ public class ProductDB {
         if (cursor.moveToFirst()) {
             do {
                 Product product = new Product();
-                product.product_ID = cursor.getInt(cursor.getColumnIndex(Product._ID));
-                product.name = cursor.getString(cursor.getColumnIndex(Product._NAME));
-                product.calories = cursor.getInt(cursor.getColumnIndex(Product._CALORIES));
-                product.proteins = cursor.getInt(cursor.getColumnIndex(Product._PROTEINS));
-                product.fats = cursor.getInt(cursor.getColumnIndex(Product._FATS));
-                product.carbohydrates = cursor.getInt(cursor.getColumnIndex(Product._CARBOHYDRATES));
+                product.product_ID = cursor.getInt(cursor.getColumnIndex(ProductDB.ID));
+                product.name = cursor.getString(cursor.getColumnIndex(ProductDB.NAME));
+                product.calories = cursor.getInt(cursor.getColumnIndex(ProductDB.CALORIES));
+                product.proteins = cursor.getInt(cursor.getColumnIndex(ProductDB.PROTEINS));
+                product.fats = cursor.getInt(cursor.getColumnIndex(ProductDB.FATS));
+                product.carbohydrates = cursor.getInt(cursor.getColumnIndex(ProductDB.CARBOHYDRATES));
                 productsList.add(product);
             } while (cursor.moveToNext());
         }

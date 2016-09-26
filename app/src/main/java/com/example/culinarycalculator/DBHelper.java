@@ -25,13 +25,13 @@ public class DBHelper  extends SQLiteOpenHelper {
         //All necessary tables you like to create will create here
 
         String CREATE_TABLE_PRODUCTS = "CREATE TABLE " + Product.TABLE  + "("
-                + Product._ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
-                + Product._NAME + " TEXT, "
-                + Product._CALORIES + " REAL, "
-                + Product._PROTEINS + " REAL, "
-                + Product._FATS + " REAL, "
-                + Product._CARBOHYDRATES + " REAL )";
-        String INITIALIZE_TABLE_PRODUCTS="INSERT INTO "+Product.TABLE+"("+Product._ID+","+Product._NAME+","+Product._CALORIES+","+Product._PROTEINS+","+Product._FATS+","+Product._CARBOHYDRATES+ ") values(1,'milk', 62,2.8,3.6,4.7)";
+                + ProductDB.ID  + " INTEGER PRIMARY KEY AUTOINCREMENT ,"
+                + ProductDB.NAME + " TEXT, "
+                + ProductDB.CALORIES + " REAL, "
+                + ProductDB.PROTEINS + " REAL, "
+                + ProductDB.FATS + " REAL, "
+                + ProductDB.CARBOHYDRATES + " REAL )";
+        String INITIALIZE_TABLE_PRODUCTS="INSERT INTO "+Product.TABLE+"("+ProductDB.ID+","+ProductDB.NAME+","+ProductDB.CALORIES+","+ProductDB.PROTEINS+","+ProductDB.FATS+","+ProductDB.CARBOHYDRATES+ ") values(1,'milk', 62,2.8,3.6,4.7)";
 
         db.execSQL(CREATE_TABLE_PRODUCTS);
         db.execSQL(INITIALIZE_TABLE_PRODUCTS);

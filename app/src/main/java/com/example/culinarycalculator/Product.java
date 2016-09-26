@@ -7,14 +7,6 @@ public class Product {
     // Labels table name
     public static final String TABLE = "Product";
 
-    // Labels Table Columns names
-    public static final String _ID = "ID";
-    public static final String _NAME = "NAME";
-    public static final String _CALORIES = "CALORIES";
-    public static final String _PROTEINS = "PROTEINS";
-    public static final String _FATS = "FATS";
-    public static final String _CARBOHYDRATES = "CARBOHYDRATES";
-
     // property help us to keep data
     int product_ID;
     String name;
